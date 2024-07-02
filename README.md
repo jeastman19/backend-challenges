@@ -10,10 +10,11 @@ Resolución al challange: https://github.com/AppeironGlobalSolutions/backend-cha
 * [Paqeutes](#paquetes)
 
 
-## Paquetes
+# Paquetes
 
 
 * ***dependency-cruiser***: Paquete empleado para validar las dependencias entre paquetes y visualizar las dependencias
+
 
 
 
