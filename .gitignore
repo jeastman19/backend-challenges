@@ -1,0 +1,14 @@
+.env
+.vscode/*
+
+dist/
+node_modules/
+coverage/
+dependencygraph.svg
+
+*.log
+
+
+
+
+prueba.js

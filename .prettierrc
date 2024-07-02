@@ -1,0 +1,33 @@
+{
+  "semi": true,
+  "trailingComma": "all",
+  "singleQuote": true,
+  "printWidth": 100,
+  "tabWidth": 4,
+  "overrides": [
+    {
+      "files": "*.ts",
+      "options": {
+        "printWidth": 80,
+        "tabWidth": 4,
+        "semi": true,
+        "singleQuote": true
+      }
+    },
+    {
+      "files": [".*", "*.json"],
+      "options": {
+        "singleQuote": false,
+        "semi": false,
+        "trailingComma": "none"
+      }
+    },
+    {
+      "files": [".*", "*.md"],
+      "options": {
+        "printWidth": 120,
+        "tabWidth": 2
+      }
+    }
+  ]
+}
