@@ -13,14 +13,16 @@
         "resolveJsonModule": true,
         "baseUrl": "./",
         "paths": {
-            "@app": ["src/app"],
             "@src/*": ["src/*"],
 
-            "@users/*": ["src/users/*"],
-            "@projects/*": ["src/projects/*"],
-            "@tasks/*": ["src/tasks/*"],
+            "@config/*": ["config/*"],
 
-            "@config/*": ["config/*"]
+            "@app/*": ["src/app/*"],
+            "@domain/*": ["src/domain/*"],
+            "@infra/*": ["src/infra/*"],
+
+            "@shared/*": ["src/shared/*"]
+
         }
     },
     "include": ["src/**/*.ts", "tests/**/*.ts"],
