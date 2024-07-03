@@ -25,7 +25,7 @@ export class User {
     }
 
     static async create(
-        id: string,
+        id: string = '',
         name: string,
         email: string,
         password: string,

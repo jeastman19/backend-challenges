@@ -15,14 +15,13 @@
         "paths": {
             "@src/*": ["src/*"],
 
-            "@config/*": ["config/*"],
+            "@config/*": ["src/config/*"],
 
             "@app/*": ["src/app/*"],
             "@domain/*": ["src/domain/*"],
             "@infra/*": ["src/infra/*"],
 
             "@shared/*": ["src/shared/*"]
-
         }
     },
     "include": ["src/**/*.ts", "tests/**/*.ts"],

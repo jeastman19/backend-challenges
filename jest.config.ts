@@ -11,6 +11,8 @@ const config: Config = {
     collectCoverageFrom: ['src/**/*.ts'],
     verbose: true,
 
+    setupFilesAfterEnv: ['<rootDir>/tests/setupTests.ts'],
+
     moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
         prefix: '<rootDir>/',
     }),

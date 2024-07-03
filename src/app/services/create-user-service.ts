@@ -1,6 +1,8 @@
-import { CreateUser } from '../../domain/use-cases/create-user';
-import { CreateUserDTO } from '../dto/create-user-dto';
-import { UserMapper } from '../maps/user-mapper';
+import { CreateUserDTO } from '@app/dto/create-user-dto';
+import { UserMapper } from '@app/maps/user-mapper';
+import { CreateUser } from '@domain/use-cases/create-user';
+
+import { CreatedUserDTO } from '../dto/created-user-dto';
 
 export class CreateUserService {
     constructor(
@@ -8,9 +10,9 @@ export class CreateUserService {
         private userMapper: UserMapper,
     ) {}
 
-    async createUser(userData: CreateUserDTO): Promise<CreateUserDTO> {
+    async createUser(userData: CreateUserDTO): Promise<CreatedUserDTO> {
         const userDomain = await this.userMapper.toDomain(userData);
         await this.createUserUC.execute(userDomain);
-        return this.userMapper.toDTO(userDomain);
+        return this.userMapper.toCreatedDTO(userDomain);
     }
 }

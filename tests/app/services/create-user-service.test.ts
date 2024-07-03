@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 import { CreateUserDTO } from '@app/dto/create-user-dto';
 import { UserMapper } from '@app/maps/user-mapper';
 import { CreateUserService } from '@app/services/create-user-service';
@@ -14,7 +16,6 @@ describe('CreateUserService', () => {
     let domainUser: User;
 
     const userData: CreateUserDTO = {
-        id: '1',
         name: 'John Doe',
         email: 'john.doe@example.com',
         password: 'plainPassword',
@@ -38,7 +39,7 @@ describe('CreateUserService', () => {
         createUserService = new CreateUserService(mockCreateUser, userMapper);
 
         domainUser = await User.create(
-            userData.id,
+            uuidv4(),
             userData.name,
             userData.email,
             hashedPassword,
@@ -47,6 +48,7 @@ describe('CreateUserService', () => {
 
         jest.spyOn(userMapper, 'toDomain').mockResolvedValue(domainUser);
         jest.spyOn(userMapper, 'toDTO').mockReturnValue(userData);
+        jest.spyOn(userMapper, 'toCreatedDTO').mockReturnValue(domainUser);
     });
 
     it('should create a user and return the created user DTO', async () => {
@@ -54,10 +56,10 @@ describe('CreateUserService', () => {
 
         expect(userMapper.toDomain).toHaveBeenCalledWith(userData);
         expect(mockCreateUser.execute).toHaveBeenCalledWith(domainUser);
-        expect(userMapper.toDTO).toHaveBeenCalledWith(domainUser);
+        expect(userMapper.toCreatedDTO).toHaveBeenCalledWith(domainUser);
 
         const result = await createUserService.createUser(userData);
-        expect(result).toEqual(userData);
+        expect(result).toEqual(domainUser);
     });
 
     it('should throw an error if user creation fails', async () => {

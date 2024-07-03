@@ -1,6 +1,7 @@
 import { Role } from '@domain/entities/role';
 
-export interface CreateUserDTO {
+export interface CreatedUserDTO {
+    id: string;
     name: string;
     email: string;
     password: string;

@@ -6,14 +6,12 @@ import { User } from '@domain/entities/user';
 import UserModel from '@infra/models/user-model';
 import { UserRepositoryImpl } from '@infra/repositories/user-repository-impl';
 
-const ObjectId = mongoose.Types.ObjectId;
-
 describe('UserRepositoryImpl', () => {
     let mongoServer: MongoMemoryServer;
     let userRepositoryImpl: UserRepositoryImpl;
 
     const user = {
-        id: new ObjectId().toHexString(),
+        id: new mongoose.Types.ObjectId().toHexString(),
         name: 'John Doe',
         email: 'john.doe@example.com',
         password: 'hashedPassword',
@@ -23,6 +21,11 @@ describe('UserRepositoryImpl', () => {
     beforeAll(async () => {
         mongoServer = await MongoMemoryServer.create();
         const uri = mongoServer.getUri();
+
+        if (mongoose.connection.readyState !== 0) {
+            await mongoose.disconnect();
+        }
+
         await mongoose.connect(uri);
     });
 
