@@ -16,8 +16,6 @@ describe('POST /users', () => {
             .send(newUser)
             .set('Accept', 'application/json');
 
-        console.log(response.body);
-
         expect(response.status).toBe(201);
         expect(response.headers['content-type']).toMatch(/json/);
     });
