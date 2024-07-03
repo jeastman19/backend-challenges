@@ -5,15 +5,15 @@ module.exports = {
       name: "domain-accessing-others-layers",
       comment: "The domain should not access layers outside of the domain",
       severity: "error",
-      from: { path: "domain" },
-      to: { pathNot: "domain" }
+      from: { path: "domain/" },
+      to: { pathNot: "domain/" }
     },
     {
       name: "application-accessing-infrastructure",
       comment: "The application should not access the infrastructure layers",
       severity: "error",
-      from: { path: "app" },
-      to: { path: "infra" }
+      from: { path: "app/" },
+      to: { path: "infra/" }
     },
     {
       name: "no-circular",
