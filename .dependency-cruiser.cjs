@@ -12,8 +12,8 @@ module.exports = {
       name: "application-accessing-infrastructure",
       comment: "The application should not access the infrastructure layers",
       severity: "error",
-      from: { path: "application" },
-      to: { path: "infrastructure" }
+      from: { path: "app" },
+      to: { path: "infra" }
     },
     {
       name: "no-circular",
