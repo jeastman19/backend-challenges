@@ -1,8 +1,7 @@
-import { PasswordHasher } from '../services/password-hasher';
-import { Role } from './role';
+import { Role } from '@domain/entities/role';
 
 export class User {
-    private readonly _id: string;
+    private _id: string;
     private _name: string;
     private _email: string;
     private _password: string;
@@ -12,7 +11,7 @@ export class User {
         id: string,
         name: string,
         email: string,
-        hashedPassword: string,
+        password: string,
         role: Role,
     ) {
         this.validateEmail(email);
@@ -21,7 +20,7 @@ export class User {
         this._id = id;
         this._name = name;
         this._email = email;
-        this._password = hashedPassword;
+        this._password = password;
         this._role = role;
     }
 
@@ -31,11 +30,8 @@ export class User {
         email: string,
         password: string,
         role: Role,
-        passwordHasher: PasswordHasher,
     ): Promise<User> {
-        const hashedPassword = await passwordHasher.hash(password);
-
-        return new User(id, name, email, hashedPassword, role);
+        return new User(id, name, email, password, role);
     }
 
     get id(): string {
@@ -71,13 +67,6 @@ export class User {
         }
     }
 
-    public async validatePassword(
-        password: string,
-        passwordHasher: PasswordHasher,
-    ): Promise<boolean> {
-        return await passwordHasher.compare(password, this.password);
-    }
-
     public updateName(name: string): void {
         this.validateName(name);
         this._name = name;
@@ -86,5 +75,9 @@ export class User {
     public updateEmail(email: string): void {
         this.validateEmail(email);
         this._email = email;
+    }
+
+    public updatePassword(password: string): void {
+        this._password = password;
     }
 }

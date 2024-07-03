@@ -43,7 +43,6 @@ describe('CreateUserService', () => {
             userData.email,
             hashedPassword,
             userData.role,
-            mockPasswordHasher,
         );
 
         jest.spyOn(userMapper, 'toDomain').mockResolvedValue(domainUser);

@@ -18,13 +18,14 @@ export class CreateUser {
     ) {}
 
     async execute(request: CreateUserRequest): Promise<void> {
+        const hashedPassword = await this.passwordHasher.hash(request.password);
+
         const user = await User.create(
             request.id,
             request.name,
             request.email,
-            request.password,
+            hashedPassword,
             request.role,
-            this.passwordHasher,
         );
         await this.userRepository.save(user);
     }

@@ -1,6 +1,6 @@
-import { User } from '../../domain/entities/user';
-import { PasswordHasher } from '../../domain/services/password-hasher';
-import { CreateUserDTO } from '../dto/create-user-dto';
+import { CreateUserDTO } from '@app/dto/create-user-dto';
+import { User } from '@domain/entities/user';
+import { PasswordHasher } from '@domain/services/password-hasher';
 
 export class UserMapper {
     constructor(private passwordHasher: PasswordHasher) {}
@@ -10,9 +10,8 @@ export class UserMapper {
             dto.id,
             dto.name,
             dto.email,
-            dto.password,
+            await this.passwordHasher.hash(dto.password),
             dto.role,
-            this.passwordHasher,
         );
     }
 
@@ -21,7 +20,7 @@ export class UserMapper {
             id: user.id,
             name: user.name,
             email: user.email,
-            password: '', // Never return the hashed password in the DTO
+            password: '', // avoid returning hashed password
             role: user.role,
         };
     }
