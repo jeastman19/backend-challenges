@@ -1,7 +1,7 @@
-import { Status } from '@src/domain/entities/product';
+import { Status } from '@src/domain/entities/project';
 import mongoose, { Document, Schema } from 'mongoose';
 
-interface IProduct extends Document {
+interface IProject extends Document {
     id: string;
     title: string;
     description: string;
@@ -9,7 +9,7 @@ interface IProduct extends Document {
     status: Status;
 }
 
-const ProductSchema: Schema = new Schema({
+const ProjectSchema: Schema = new Schema({
     id: { type: String, required: true, unique: true },
     title: { type: String, required: true },
     description: { type: String, required: true },
@@ -21,5 +21,5 @@ const ProductSchema: Schema = new Schema({
     },
 });
 
-const ProductModel = mongoose.model<IProduct>('Product', ProductSchema);
-export default ProductModel;
+const ProjectModel = mongoose.model<IProject>('Project', ProjectSchema);
+export default ProjectModel;

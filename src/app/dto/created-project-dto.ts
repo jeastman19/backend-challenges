@@ -1,6 +1,6 @@
-import { Status } from '@src/domain/entities/product';
+import { Status } from '@src/domain/entities/project';
 
-export interface CreatedProductDTO {
+export interface CreatedProjectDTO {
     id: string;
     title: string;
     description: string;

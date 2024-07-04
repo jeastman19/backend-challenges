@@ -5,12 +5,13 @@ import { CreateUserService } from '@app/services/create-user-service';
 import { PasswordHasher } from '@domain/services/password-hasher';
 import { CreateUser } from '@domain/use-cases/create-user';
 import { UserController } from '@infra/controllers/user-controller';
-import { ProductRepositoryImpl } from '@infra/repositories/product-repository-impl';
+import { ProjectRepositoryImpl } from '@infra/repositories/project-repository-impl';
 import { UserRepositoryImpl } from '@infra/repositories/user-repository-impl';
-import { ProductMapper } from '@src/app/maps/product-mapper';
-import { CreateProductService } from '@src/app/services/create-product-service';
-import { CreateProduct } from '@src/domain/use-cases/create-product';
-import { ProductController } from './controllers/product-controller';
+import { ProjectMapper } from '@src/app/maps/project-mapper';
+import { CreateProjectService } from '@src/app/services/create-project-service';
+import { CreateProject } from '@src/domain/use-cases/create-project';
+
+import { ProjectController } from './controllers/project-controller';
 
 class BcryptPasswordHasher implements PasswordHasher {
     private readonly saltRounds = 10;
@@ -30,17 +31,17 @@ const userMapper = new UserMapper(passwordHasher);
 const createUser = new CreateUser(userRepository, passwordHasher);
 const createUserService = new CreateUserService(createUser, userMapper);
 
-const productRepository = new ProductRepositoryImpl();
+const projectRepository = new ProjectRepositoryImpl();
 
-const createProduct = new CreateProduct(productRepository);
-const productMapper = new ProductMapper();
+const createProject = new CreateProject(projectRepository);
+const projectMapper = new ProjectMapper();
 
-const createProductService = new CreateProductService(
-    createProduct,
-    productMapper,
+const createProjectService = new CreateProjectService(
+    createProject,
+    projectMapper,
 );
 
 const userController = new UserController(createUserService);
-const productController = new ProductController(createProductService);
+const projectController = new ProjectController(createProjectService);
 
-export { productController, userController };
+export { projectController, userController };

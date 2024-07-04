@@ -1,6 +1,6 @@
 export type Status = 'not started' | 'in progress' | 'completed';
 
-export class Product {
+export class Project {
     private _id: string;
     private _title: string;
     private _description: string;
@@ -27,7 +27,7 @@ export class Product {
         description: string,
         dueDate: string,
         status: Status,
-    ): Promise<Product> {
+    ): Promise<Project> {
         if (!title) {
             throw new Error('Title is required');
         }
@@ -44,7 +44,7 @@ export class Product {
             throw new Error('Status is required');
         }
 
-        return new Product(id, title, description, dueDate, status);
+        return new Project(id, title, description, dueDate, status);
     }
 
     get id(): string {
