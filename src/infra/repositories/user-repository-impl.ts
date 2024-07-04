@@ -1,8 +1,8 @@
 import { Role } from '@src/domain/entities/role';
 
-import { User } from '../../domain/entities/user';
-import { UserRepository } from '../../domain/repositories/user-repository';
-import UserModel from '../models/user-model';
+import { User } from '@domain/entities/user';
+import { UserRepository } from '@domain/repositories/user-repository';
+import UserModel from '@infra/models/user-model';
 
 export class UserRepositoryImpl implements UserRepository {
     async save(user: User): Promise<User> {

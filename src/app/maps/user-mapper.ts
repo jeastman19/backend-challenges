@@ -1,8 +1,10 @@
+import { v4 as uuidv4 } from 'uuid';
+
 import { CreateUserDTO } from '@app/dto/create-user-dto';
 import { User } from '@domain/entities/user';
 import { PasswordHasher } from '@domain/services/password-hasher';
+
 import { CreatedUserDTO } from '../dto/created-user-dto';
-import { v4 as uuidv4 } from 'uuid';
 
 export class UserMapper {
     constructor(private passwordHasher: PasswordHasher) {}
